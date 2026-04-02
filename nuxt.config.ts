@@ -2,7 +2,11 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
-  modules: ["@netlify/nuxt", '@nuxt/image'],
-  nitro: { preset: 'netlify' },
-  image: { provider: 'netlify' }
+  modules: ["@netlify/nuxt"],
+  nitro: { 
+    preset: 'netlify',
+    output: {
+      publicDir: 'dist'
+    }
+  },
 })
