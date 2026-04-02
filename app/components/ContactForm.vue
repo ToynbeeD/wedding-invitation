@@ -2,42 +2,38 @@
 const PRESENCE_OPTIONS = [
     {
         title: 'С удовольствием приду',
-        value: '+',
+        value: 'ДА',
     },
     {
         title: 'К сожалению, не смогу',
-        value: '-',
-    },
-    {
-        title: 'Пока не уверен',
-        value: '?',
+        value: 'НЕТ',
     },
 ]
 
 const DRINKS_OPTIONS = [
     {
         title: 'Шампанское',
-        value: 'shampagne',
+        value: 'Шампанское',
     },
     {
         title: 'Вино (белое)',
-        value: 'vine-white',
+        value: 'Вино (белое)',
     },
     {
         title: 'Вино (красное)',
-        value: 'vine-red',
+        value: 'Вино (красное)',
     },
     {
         title: 'Водка',
-        value: 'vodka',
+        value: 'Водка',
     },
     {
         title: 'Виски',
-        value: 'whiskey',
+        value: 'Виски',
     },
     {
-        title: 'Ром',
-        value: 'rom',
+        title: 'Не пью алкоголь',
+        value: 'НЕ ПЬЮ',
     },
 ]
 
@@ -47,7 +43,9 @@ const formData = reactive({
     alcohol: '',
 })
 
-const submited = ref(false)
+const isLoading = ref(false);
+const submited = ref(false);
+const error = ref(false);
 
 const updatePresence = (event) => {
     const value = event.target.value;
@@ -61,15 +59,42 @@ const updateAlcohol = (event) => {
     formData.alcohol = value;
 }
 
-const onSubmit = () => {
-    submited.value = true;
-    console.log(formData)
-}
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyqOgKvJdezE9Y4F5MYwuqKtCBKhi4ssjhKFYPjeNPVKscf2PA6KXzp0bMEDu6iZYsXjQ/exec';
+const key = 'da39a3ee5e6b4b0d3255bfef95601890afd80709'
+
+const onSubmit = async () => {
+    isLoading.value = true;
+
+    try {
+        const res = await fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                name: formData.name,
+                presence: formData.presence,
+                alcohol: formData.alcohol,
+                date: new Date().toLocaleDateString('ru'),
+                key,
+            }),
+            mode: 'no-cors'
+        });
+
+        submited.value = true;
+    } catch (err) {
+        error.value = true;
+    } finally {
+        isLoading.value = false;
+    }
+};
 </script>
 
 <template>
     <div v-if="submited" class="success-submit">
         Спасибо, что заполнили форму!
+    </div>
+
+    <div v-else-if="error" class="error-submit">
+        Произошла ошибка при отправке формы.
     </div>
 
     <form v-else class="contact-form" @submit.prevent="onSubmit">
@@ -85,6 +110,7 @@ const onSubmit = () => {
                     class="radio-input"
                     type="radio"
                     name="presence"
+                    :required="true"
                     :value="option.value" 
                     :checked="formData.presence === option.value"
                     @input="updatePresence"
@@ -100,6 +126,7 @@ const onSubmit = () => {
                     class="radio-input"
                     type="radio"
                     name="alcohol" 
+                    :required="formData.presence === 'ДА'"
                     :value="option.value" 
                     :checked="formData.alcohol === option.value"
                     @input="updateAlcohol"
@@ -108,7 +135,7 @@ const onSubmit = () => {
             </label>
         </div>
 
-        <AppButton>Отправить</AppButton>
+        <AppButton :is-loading="isLoading">Отправить</AppButton>
     </form>
 </template>
 
@@ -117,6 +144,15 @@ const onSubmit = () => {
     padding: var(--range-m);
     background-color: #e0ffc7;
     border: 1px solid #b4d39b;
+    font: var(--font-xs);
+    font-weight: bold;
+    width: 100%;
+}
+
+.error-submit {
+    padding: var(--range-m);
+    background-color: #ff9a9a;
+    border: 1px solid #ff6262;
     font: var(--font-xs);
     font-weight: bold;
     width: 100%;
