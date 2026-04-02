@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Forum&display=swap');
+
+:root {
+    --primary-color: #333333;
+    --secondary-color: #003631;
+    --white-color: #ffffff;
+    --black-color: #000000;
+
+    --range-xl: 100px;
+    --range-l: 30px;
+    --range-m: 20px;
+    --range-s: 15px;
+    --range-xs: 12px;
+    --range-xxs: 5px;
+
+    --text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.99);
+
+    /* ======== Text ======== */
+    --font-family-main: "Forum", Sans-serif;
+
+    /* XXL */    
+    --font-size-xxl: 44px;
+    --font-line-xxl: 48px;
+    --font-xxl: var(--font-size-xxl) / var(--font-line-xxl) var(--font-family-main);
+
+    /* XL */
+    --font-size-xl: 38px;
+    --font-line-xl: 42px;
+    --font-xl: var(--font-size-xl) / var(--font-line-xl) var(--font-family-main);
+
+    /* L */
+    --font-size-l: 26px;
+    --font-line-l: 30px;
+    --font-l: var(--font-size-l) / var(--font-line-l) var(--font-family-main);
+
+    /* M */
+    --font-size-m: 22px;
+    --font-line-m: 26px;
+    --font-m: var(--font-size-m) / var(--font-line-m) var(--font-family-main);
+
+    /* S */
+    --font-size-s: 20px;
+    --font-line-s: 24px;
+    --font-s: var(--font-size-s) / var(--font-line-s) var(--font-family-main);
+
+        /* S */
+    --font-size-xs: 18px;
+    --font-line-xs: 22px;
+    --font-xs: var(--font-size-xs) / var(--font-line-xs) var(--font-family-main);
+}
