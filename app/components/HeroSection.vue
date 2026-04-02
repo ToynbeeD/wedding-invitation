@@ -20,7 +20,7 @@
     padding-bottom: var(--range-xl);
     height: 100vh;
     min-height: 500px;
-    max-height: 760px;
+    max-height: 900px;
     background-image: url('/img/hero.jpg');
     background-repeat: no-repeat;
     background-size: cover;

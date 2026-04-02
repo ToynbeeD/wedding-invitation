@@ -15,8 +15,6 @@
     "vue-router": "^5.0.4"
   },
   "devDependencies": {
-    "@netlify/nuxt": "^0.2.36",
-    "@nuxt/image": "^2.0.0",
-    "cross-env": "^10.1.0"
+    "@netlify/nuxt": "^0.2.36"
   }
 }
