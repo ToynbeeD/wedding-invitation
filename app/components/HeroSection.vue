@@ -1,26 +1,68 @@
-<script></script>
+<script setup>
+import { gsap } from "gsap";
+
+onMounted(() => {
+    gsap.set('.logo-letters', { autoAlpha: 1 });
+    gsap.set('.animate', { autoAlpha: 1 });
+    gsap.set('.chevron-down', { autoAlpha: 1 });
+
+    const tl = gsap.timeline();
+
+    tl.from('.logo-letters', {
+        yPercent: 100,
+        autoAlpha: 0,
+        duration: 1,
+    });
+
+    tl.from('.animate', {
+        yPercent: -50,
+        autoAlpha: 0,
+        stagger: 0.1,
+        duration: 1,
+    })
+
+    tl.from('.chevron-down', {
+        y: 20,
+        autoAlpha: 0,
+    })
+
+    tl.to('.chevron-down', {
+        y: 10,
+        duration: 0.8,
+        repeat: -1,
+        yoyo: true,
+    })
+})
+</script>
 
 <template>
     <section class="section hero-section">
         <p class="logo-letters">DK</p>
         <div class="container hero-container">
-            <h1 class="invite-text">ПРИГЛАШЕНИЕ НА СВАДЬБУ</h1>
-            <HeartDivider color="var(--white-color)" />
-            <p class="invite-text">28.05.2026</p>
+            <h1 class="animate invite-text">ПРИГЛАШЕНИЕ НА СВАДЬБУ</h1>
+            <HeartDivider class="animate" color="var(--white-color)" />
+            <p class="animate invite-text">28.05.2026</p>
         </div>
-
+        
         <div class="dark-shadow"></div>
+        <div class="chevron-down"></div>
     </section>
 </template>
 
 <style scoped>
+.logo-letters,
+.animate,
+.chevron-down {
+  opacity: 0;
+}
+
 .hero-section {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     padding-top: var(--range-xl);
     padding-bottom: var(--range-xl);
-    height: 100vh;
+    height: calc(100vh - 50px);
     min-height: 600px;
     max-height: 900px;
     background-image: url('/img/hero.jpg');
@@ -69,5 +111,18 @@
 .invite-text {
     font-size: var(--font-size-l);
     font-weight: 500;
+}
+
+.chevron-down {
+    position: absolute;
+    bottom: 40px;
+    left: calc(50% - 15px); 
+    width: 30px;
+    height: 30px;
+    background-image: url('/img/chevron-down.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    z-index: 10;
 }
 </style>
