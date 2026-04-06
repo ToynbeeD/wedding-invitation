@@ -19,8 +19,8 @@ export default defineNuxtConfig({
         {property: 'og:site_name', content: 'Электронное приглашение'},
         {property: 'og:title', content: 'Свадьба Дениса и Ксении'},
         {property: 'og:description', content: 'Приглашаем Вас на торжество, посвященное нашему бракосочетанию'},
-        {property: 'og:url', content: 'https://wedding-dk.netlify.app/'},
-        {property: 'og:image', content: 'https://wedding-dk.netlify.app/img/countdown-bg.jpg'},
+        {property: 'og:url', content: 'https://toynbeed.github.io/wedding-invitation/'},
+        {property: 'og:image', content: 'https://toynbeed.github.io/wedding-invitation/img/countdown-bg.jpg'},
         {property: 'og:type', content: 'website'},
         {property: 'og:locale', content: 'ru_RU'},
       ]

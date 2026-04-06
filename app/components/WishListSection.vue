@@ -21,7 +21,7 @@
 
 <style scoped>
 .wish-list-section {
-    background-image: url('/img/wish-list-bg.jpg');
+    background-image: url('img/wish-list-bg.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;

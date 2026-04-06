@@ -119,7 +119,7 @@ onMounted(() => {
     left: calc(50% - 15px); 
     width: 30px;
     height: 30px;
-    background-image: url('/img/chevron-down.svg');
+    background-image: url('img/chevron-down.svg');
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;

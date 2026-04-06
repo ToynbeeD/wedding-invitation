@@ -10,7 +10,7 @@
 
             <p class="top-text">Будем рады видеть Вас на нашем празднике!</p>
             <div class="logo-wrapper">
-                <img class="logo" src="/img/logo.png" alt="Денис и Ксения">
+                <img class="logo" src="img/logo.png" alt="Денис и Ксения">
             </div>
             <p>28.05.2026</p>
             <HeartDivider class="section-divider" />

@@ -16,7 +16,7 @@
                 <span>С уважением,</span>
             </p>
             <div class="logo-wrapper">
-                <img class="logo" src="/img/logo.png" alt="Денис и Ксения">
+                <img class="logo" src="img/logo.png" alt="Денис и Ксения">
             </div>
         </div>
 
@@ -26,7 +26,7 @@
 
 <style scoped>
 .description-section {
-    background-image: url('/img/section-bg.jpg');
+    background-image: url('img/section-bg.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
