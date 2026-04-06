@@ -2,15 +2,13 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
-  modules: ["@netlify/nuxt"],
-  nitro: { 
-    preset: 'netlify',
-    output: {
-      publicDir: 'dist'
-    }
+
+  nitro: {
+    preset: 'github-pages'   // важный пресет от Nuxt
   },
 
   app: {
+    baseURL: '/wedding-invitation/',
     head: {
       link: [
         { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
