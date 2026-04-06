@@ -1,12 +1,14 @@
 <script setup>
 const COLORS = [
-    '#FFD1DC',
-    '#F7E7CE',
-    '#E6CCE6',
-    '#FFF9C4',
-    '#C1DFF0',
-    '#DDE5B6',
+    '#F3B0C3',
+    '#FEE1E8',
+    '#FCF2F3',
+    '#DBE6D8',
     '#C9CBA3',
+    '#B9CBE8',
+    '#CDDEEF',
+    '#FFFFDB',
+    '#F9E9D5',
 ]
 </script>
 
@@ -46,16 +48,13 @@ const COLORS = [
 
 .dress-code-list {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
-    gap: var(--range-m);
+    width: 100%;
 }
 
 .dress-code-list-item {
-    flex-shrink: 0;
-    height: 80px;
-    width: 80px;
-    border-radius: 50%;
+    flex: 1 1 40px;
+    height: 120px;
     transition: transform 100ms linear;
     cursor: pointer;
 }
