@@ -12,10 +12,6 @@ const PRESENCE_OPTIONS = [
 
 const DRINKS_OPTIONS = [
     {
-        title: 'Шампанское',
-        value: 'Шампанское',
-    },
-    {
         title: 'Вино (белое)',
         value: 'Вино (белое)',
     },
@@ -73,7 +69,7 @@ const onSubmit = async () => {
                 name: formData.name,
                 presence: formData.presence,
                 alcohol: formData.alcohol,
-                date: new Date().toLocaleDateString('ru'),
+                date: new Date().toLocaleString('ru'),
                 key,
             }),
             mode: 'no-cors'
