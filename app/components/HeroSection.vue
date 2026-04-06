@@ -65,7 +65,7 @@ onMounted(() => {
     height: calc(100vh - 50px);
     min-height: 600px;
     max-height: 900px;
-    background-image: url('/img/hero.jpg');
+    background-image: url('img/hero.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;

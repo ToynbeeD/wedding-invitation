@@ -4,11 +4,10 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
 
   nitro: {
-    preset: 'github-pages'   // важный пресет от Nuxt
+    preset: 'github-pages'
   },
 
   app: {
-    baseURL: '/wedding-invitation/',
     head: {
       link: [
         { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
