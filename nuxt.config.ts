@@ -2,13 +2,13 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
-  ssr: false,
 
   nitro: {
-    preset: 'static'
+    preset: 'github-pages'
   },
 
   app: {
+    baseURL: '/wedding-invitation/',
     head: {
       link: [
         { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
