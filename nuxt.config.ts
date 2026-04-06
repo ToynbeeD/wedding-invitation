@@ -4,7 +4,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
 
   nitro: {
-    preset: 'github-pages'
+    preset: 'static'
   },
 
   app: {

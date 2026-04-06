@@ -42,7 +42,7 @@
 
 <style scoped>
 .schedule-section {
-    background-image: url('img/section-bg.jpg');
+    background-image: url('/img/section-bg.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -59,7 +59,7 @@
 .schedule-list-arrow-down {
     margin-top: var(--range-xs);
     display: block;
-    background-image: url(img/arrow.svg);
+    background-image: url(/img/arrow.svg);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;

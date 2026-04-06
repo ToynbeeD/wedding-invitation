@@ -68,7 +68,7 @@ onMounted(() => {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    background-image: url('img/countdown-bg.jpg');
+    background-image: url('/img/countdown-bg.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
