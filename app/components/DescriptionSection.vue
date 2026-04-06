@@ -16,7 +16,7 @@
                 <span>С уважением,</span>
             </p>
             <div class="logo-wrapper">
-                <img class="logo" src="img/logo.png" alt="Денис и Ксения">
+                <img class="logo" src="/img/logo.png" alt="Денис и Ксения">
             </div>
         </div>
 
