@@ -1,4 +1,4 @@
-<script setup>
+<script setup> 
 const PRESENCE_OPTIONS = [
     {
         title: 'С удовольствием приду',
@@ -33,6 +33,8 @@ const DRINKS_OPTIONS = [
     },
 ]
 
+const emit = defineEmits(['success']);
+
 const formData = reactive({
     name: '',
     presence: '',
@@ -42,6 +44,8 @@ const formData = reactive({
 const isLoading = ref(false);
 const submited = ref(false);
 const error = ref(false);
+
+const willGuestComeTo = computed(() => formData.presence === PRESENCE_OPTIONS[0].value);
 
 const updatePresence = (event) => {
     const value = event.target.value;
@@ -62,7 +66,7 @@ const onSubmit = async () => {
     isLoading.value = true;
 
     try {
-        const res = await fetch(GOOGLE_SCRIPT_URL, {
+        await fetch(GOOGLE_SCRIPT_URL, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -76,6 +80,7 @@ const onSubmit = async () => {
         });
 
         submited.value = true;
+        willGuestComeTo.value && emit('success');
     } catch (err) {
         error.value = true;
     } finally {
@@ -86,7 +91,15 @@ const onSubmit = async () => {
 
 <template>
     <div v-if="submited" class="success-submit">
-        Спасибо, что заполнили форму!
+        <span>
+            Спасибо, что заполнили форму!
+        </span>
+        <span v-show="willGuestComeTo">
+            С нетерпением ждем встречи с&nbsp;вами на&nbsp;нашем&nbsp;празднике!
+        </span>
+        <span v-show="!willGuestComeTo">
+            Очень жаль, что вы не будете присутствовать. Если&nbsp;ваши&nbsp;планы&nbsp;изменятся - смело пишите нам!
+        </span>
     </div>
 
     <div v-else-if="error" class="error-submit">
@@ -115,7 +128,7 @@ const onSubmit = async () => {
             </label>
         </div>
 
-        <div class="form-element">
+        <div v-show="willGuestComeTo" class="form-element">
             <span class="field-title">Предпочтения напитков</span>
             <label v-for="option in DRINKS_OPTIONS" :key="option.value" class="radio-option">
                 <input
@@ -138,6 +151,11 @@ const onSubmit = async () => {
 <style scoped>
 .success-submit {
     padding: var(--range-m);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--range-s);
     background-color: #e0ffc7;
     border: 1px solid #b4d39b;
     font: var(--font-xs);
