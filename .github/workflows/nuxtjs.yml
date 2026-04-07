@@ -9,8 +9,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      NUXT_PUBLIC_GOOGLE_KEY: ${{ secrets.NUXT_PUBLIC_GOOGLE_KEY }}
-      NUXT_PUBLIC_GOOGLE_SCRIPT_URL: ${{ secrets.NUXT_PUBLIC_GOOGLE_SCRIPT_URL }}
+      NUXT_PUBLIC_GOOGLE_KEY: ${{ vars.NUXT_PUBLIC_GOOGLE_KEY }}
+      NUXT_PUBLIC_GOOGLE_SCRIPT_URL: ${{ vars.NUXT_PUBLIC_GOOGLE_SCRIPT_URL }}
     steps:
       - uses: actions/checkout@v4
       - run: corepack enable
