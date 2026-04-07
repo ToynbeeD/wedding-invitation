@@ -31,11 +31,8 @@ const COLORS = [
                     v-for="color in COLORS"
                     :key="color"
                     class="dress-code-list-item"
+                    :style="{ backgroundColor: color }"
                 >
-                    <button
-                        class="color-button"
-                        :style="{ backgroundColor: color }"
-                    ></button>
                 </li>
             </ul>
         </div>
@@ -63,19 +60,11 @@ const COLORS = [
 
 .dress-code-list-item {
     flex: 1 1 40px;
-}
-
-.color-button {
-    border: none;
-    outline: none;
-    width: 100%;
     height: 120px;
-    transition: transform 100ms linear;
-    cursor: pointer;
+    transition: transform 150ms linear;
 }
 
-.color-button:hover,
-.color-button:focus {
+.dress-code-list-item:hover {
     transform: scale(120%);
 }
 </style>
