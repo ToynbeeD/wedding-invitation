@@ -17,6 +17,9 @@ jobs:
       # Pick your own package manager and build script
       - run: npm install
       - run: npm run build
+        env:
+          NUXT_PUBLIC_GOOGLE_KEY: ${{ vars.NUXT_PUBLIC_GOOGLE_KEY }}
+          NUXT_PUBLIC_GOOGLE_SCRIPT_URL: ${{ vars.NUXT_PUBLIC_GOOGLE_SCRIPT_URL }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
