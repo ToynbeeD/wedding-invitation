@@ -7,6 +7,13 @@ export default defineNuxtConfig({
     preset: 'github-pages'
   },
 
+  runtimeConfig: {
+    public: {
+      googleKey: '',
+      googleScriptUrl: '',
+    },
+  },
+
   app: {
     baseURL: '/wedding-invitation/',
     head: {

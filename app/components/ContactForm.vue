@@ -59,14 +59,15 @@ const updateAlcohol = (event) => {
     formData.alcohol = value;
 }
 
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyqOgKvJdezE9Y4F5MYwuqKtCBKhi4ssjhKFYPjeNPVKscf2PA6KXzp0bMEDu6iZYsXjQ/exec';
-const key = 'da39a3ee5e6b4b0d3255bfef95601890afd80709'
-
 const onSubmit = async () => {
     isLoading.value = true;
 
+    const config = useRuntimeConfig();
+    const scriptUrl = config.public.googleScriptUrl;
+    const key = config.public.googleKey;
+
     try {
-        await fetch(GOOGLE_SCRIPT_URL, {
+        await fetch(scriptUrl, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
