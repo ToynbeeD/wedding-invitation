@@ -1,8 +1,10 @@
 <script setup> 
+const PRESENCE_YES_VALUE = 'ДА';
+const ALCOHOL_CUSTOM_VALUE = 'Другое';
 const PRESENCE_OPTIONS = [
     {
         title: 'С удовольствием приду',
-        value: 'ДА',
+        value: PRESENCE_YES_VALUE,
     },
     {
         title: 'К сожалению, не смогу',
@@ -31,6 +33,10 @@ const DRINKS_OPTIONS = [
         title: 'Не пью алкоголь',
         value: 'НЕ ПЬЮ',
     },
+    {
+        title: 'Свой вариант',
+        value: ALCOHOL_CUSTOM_VALUE,
+    },
 ]
 
 const emit = defineEmits(['success']);
@@ -39,13 +45,15 @@ const formData = reactive({
     name: '',
     presence: '',
     alcohol: '',
+    customAlcohol: '',
 })
 
 const isLoading = ref(false);
 const submited = ref(false);
 const error = ref(false);
 
-const willGuestComeTo = computed(() => formData.presence === PRESENCE_OPTIONS[0].value);
+const willGuestComeTo = computed(() => formData.presence === PRESENCE_YES_VALUE);
+const isAlcoholCustom = computed(() => formData.alcohol === ALCOHOL_CUSTOM_VALUE);
 
 const updatePresence = (event) => {
     const value = event.target.value;
@@ -66,16 +74,22 @@ const onSubmit = async () => {
     const scriptUrl = config.public.googleScriptUrl;
     const key = config.public.googleKey;
 
+    const name = formData.name;
+    const presence = formData.presence;
+    const alcohol = willGuestComeTo.value ? formData.alcohol : '-';
+    const customAlcohol = isAlcoholCustom.value ? formData.customAlcohol : '-';
+
     try {
         await fetch(scriptUrl, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                name: formData.name,
-                presence: formData.presence,
-                alcohol: formData.alcohol,
-                date: new Date().toLocaleString('ru'),
                 key,
+                name,
+                presence,
+                alcohol,
+                date: new Date().toLocaleString('ru'),
+                customAlcohol,
             }),
             mode: 'no-cors'
         });
@@ -143,6 +157,15 @@ const onSubmit = async () => {
                 />
                 <span class="radio-label">{{ option.title }}</span>
             </label>
+            <input 
+                v-if="isAlcoholCustom" 
+                v-model="formData.customAlcohol" 
+                class="input-text alcohol-input" type="text" 
+                placeholder="Напишите свой вариант"
+                name="alcohol-custom" 
+                max="50" 
+                :required="isAlcoholCustom"
+            >
         </div>
 
         <AppButton :is-loading="isLoading">Отправить</AppButton>
@@ -221,5 +244,9 @@ const onSubmit = async () => {
 
 .radio-label {
     font: var(--font-s);
+}
+
+.alcohol-input {
+    margin-top: var(--range-xs);
 }
 </style>
