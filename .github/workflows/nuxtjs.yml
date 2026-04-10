@@ -20,6 +20,8 @@ jobs:
         env:
           NUXT_PUBLIC_GOOGLE_KEY: ${{ secrets.NUXT_PUBLIC_GOOGLE_KEY }}
           NUXT_PUBLIC_GOOGLE_SCRIPT_URL: ${{ secrets.NUXT_PUBLIC_GOOGLE_SCRIPT_URL }}
+          NUXT_PUBLIC_TG_TOKEN: ${{ secrets.NUXT_PUBLIC_TG_TOKEN }}
+          NUXT_PUBLIC_TG_CHAT_ID: ${{ secrets.NUXT_PUBLIC_TG_CHAT_ID }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

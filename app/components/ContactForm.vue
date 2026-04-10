@@ -113,13 +113,14 @@ const onSubmit = async () => {
     isLoading.value = true;    
 
     try {
-        await Promise.all([sendForm(), sendAlertOnTelegram()]);
+        await sendForm();
         submited.value = true;
         willGuestComeTo.value && emit('success');
     } catch (err) {
         error.value = true;
     } finally {
         isLoading.value = false;
+        sendAlertOnTelegram();
     }
 };
 </script>
