@@ -67,9 +67,24 @@ const updateAlcohol = (event) => {
     formData.alcohol = value;
 }
 
-const onSubmit = async () => {
-    isLoading.value = true;
+const sendAlertOnTelegram = async () => {
+    const config = useRuntimeConfig();
+    const tgToken = config.public.tgToken;
+    const chatID = config.public.tgChatId;
+    const willComeTo = willGuestComeTo.value ? 'будет' : 'не будет';
+    const message = `Гость заполнил форму. ${formData.name} ${willComeTo} на свадьбе`;
 
+    await fetch(`https://api.telegram.org/bot${tgToken}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            chat_id: chatID,
+            text: message,
+        }),
+    })
+}
+
+const sendForm = async () => {
     const config = useRuntimeConfig();
     const scriptUrl = config.public.googleScriptUrl;
     const key = config.public.googleKey;
@@ -79,21 +94,26 @@ const onSubmit = async () => {
     const alcohol = willGuestComeTo.value ? formData.alcohol : '-';
     const customAlcohol = isAlcoholCustom.value ? formData.customAlcohol : '-';
 
-    try {
-        await fetch(scriptUrl, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                key,
-                name,
-                presence,
-                alcohol,
-                date: new Date().toLocaleString('ru'),
-                customAlcohol,
-            }),
-            mode: 'no-cors'
-        });
+    await fetch(scriptUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            key,
+            name,
+            presence,
+            alcohol,
+            date: new Date().toLocaleString('ru'),
+            customAlcohol,
+        }),
+        mode: 'no-cors'
+    });
+}
 
+const onSubmit = async () => {
+    isLoading.value = true;    
+
+    try {
+        await Promise.all([sendForm(), sendAlertOnTelegram()]);
         submited.value = true;
         willGuestComeTo.value && emit('success');
     } catch (err) {

@@ -11,6 +11,8 @@ export default defineNuxtConfig({
     public: {
       googleKey: '',
       googleScriptUrl: '',
+      tgToken: '',
+      tgChatId: '',
     },
   },
 
