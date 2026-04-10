@@ -117,7 +117,7 @@ const onSubmit = async () => {
     isLoading.value = true;    
 
     try {
-        await Promise.all[sendForm(), sendAlertOnTelegram()]
+        await Promise.all([sendForm(), sendAlertOnTelegram()]);
         submited.value = true;
         willGuestComeTo.value && emit('success');
     } catch (err) {
