@@ -74,14 +74,18 @@ const sendAlertOnTelegram = async () => {
     const willComeTo = willGuestComeTo.value ? 'будет' : 'не будет';
     const message = `Гость заполнил форму. ${formData.name} ${willComeTo} на свадьбе`;
 
-    await fetch(`https://api.telegram.org/bot${tgToken}/sendMessage`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            chat_id: chatID,
-            text: message,
-        }),
-    })
+    try {
+        await fetch(`https://api.telegram.org/bot${tgToken}/sendMessage`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                chat_id: chatID,
+                text: message,
+            }),
+        })
+    } catch {
+        return;
+    }
 }
 
 const sendForm = async () => {
@@ -113,14 +117,13 @@ const onSubmit = async () => {
     isLoading.value = true;    
 
     try {
-        await sendForm();
+        await Promise.all[sendForm(), sendAlertOnTelegram()]
         submited.value = true;
         willGuestComeTo.value && emit('success');
     } catch (err) {
         error.value = true;
     } finally {
         isLoading.value = false;
-        sendAlertOnTelegram();
     }
 };
 </script>
